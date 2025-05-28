@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="assets/css/4-Ejes.css">
     <link rel="stylesheet" href="assets/css/Features-Cards-icons.css">
     <link rel="stylesheet" href="assets/css/Features-Minimal-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="assets/css/navbar_uk.css">
     <link rel="stylesheet" href="assets/css/Video-Responsive.css">
 </head>
@@ -23,7 +24,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item d-flex justify-content-start"><a class="nav-link d-flex" style="color: #ffffff;" href="https://universidaduk.com/about" target="_blank">Acerca de nosotros</a></li>
                     <li class="nav-item dropdown multilevel"><a class="nav-link d-flex justify-content-start" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="color: rgb(255,255,255);">Oferta Educativa<i class="fa fa-chevron-right" style="margin-top: 5px;margin-left: 5px;"></i></a>
-                        <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item dropdown" href="#">Licenciaturas</a><a class="dropdown-item" href="#">Maestrías</a><a class="dropdown-item" href="#">Prepa en 20 Meses</a></div>
+                        <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item dropdown" href="#">Licenciaturas</a><a class="dropdown-item" href="#">Maestrías</a><a class="dropdown-item" href="#">Prepa en 24 Meses</a></div>
                     </li>
                     <li class="nav-item d-flex justify-content-start"><a class="nav-link d-flex" style="color: #ffffff;" href="https://blog.universidaduk.com/" target="_blank">Blog</a></li>
                     <li class="nav-item d-flex justify-content-start"><a class="nav-link d-flex" href="https://universidaduk.com/tienda" style="color: rgb(255,255,255);" target="_blank">Tienda</a><a class="btn btn-primary" role="button" style="background: #ff671b;border-color: #ff671b;" href="https://ukuepa.secure.force.com/LandingKuepa" target="_blank">Mi Portal Uk</a></li>
@@ -36,7 +37,7 @@
             </div>
         </div>
     </nav>
-    <section class="d-xxl-flex align-items-xxl-center" id="bg" style="height: 100%;padding-bottom: 26px;">
+    <section class="d-xxl-flex align-items-xxl-center" id="bg" style="height: 100%;padding-bottom: 26px;padding-top: 20px;">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-xl-4 col-xxl-4 d-xl-flex align-items-xl-center align-items-xxl-start">
@@ -55,7 +56,7 @@
                             <p style="color: #ffffff;font-family: Inter, sans-serif;font-size: 14px;margin-bottom: 25px;">Termina en solo</p>
                         </div>
                         <div>
-                            <h1 style="font-weight: 700 !important;font-size: 4rem;color: #ffffff;margin-top: -31px;">20 Meses</h1>
+                            <h1 style="font-weight: 700 !important;font-size: 4rem;color: #ffffff;margin-top: -31px;">24 Meses</h1>
                         </div>
                         <div class="d-xl-flex" style="margin-top: -14px;"><button class="btn btn-outline-primary rvoe" type="button" style="color: #ffffff;border-color: #ff671b;">RVOE: 2526</button></div>
                         <div style="margin-top: 10px;"><img class="img-fluid" src="assets/img/IEA.png" width="40%"></div>
@@ -106,7 +107,9 @@
       <img src="assets/img/w.webp" alt="Asesor Virtual" style="width: 40px; height: 40px; border-radius: 50%;">
       <div>
         <h3 style="margin: 0; font-size: 16px;">Asesor Virtual</h3>
-        <span style="font-size: 12px; color: #8fff96;">En línea ●</span>
+        <span style="font-size: 12px; color: #8fff96;">
+  En línea <span class="online-dot"></span>
+</span>
       </div>
     </div>
 
@@ -118,12 +121,47 @@
 
     <!-- Input -->
     <div style="display: flex; justify-content: space-between; align-items: center; background-color: transparent; border: 1px solid white; border-radius: 20px; padding: 6px 12px;">
-      <input type="text" placeholder="¿Puedo Estudiar..?" style="flex: 1; background: transparent; border: none; color: white; font-size: 14px; outline: none;">
-      <button style="background-color: #26aefb; border: none; color: white; padding: 6px 10px; border-radius: 50%; cursor: pointer; font-size: 16px;">&#11014;</button>
+      <input type="text" placeholder="Escribe Aquí" style="flex: 1; background: transparent; border: none; color: white; font-size: 14px; outline: none;">
+      <button style="
+  background-color: #26aefb;
+  border: none;
+  color: white;
+  padding: 10px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;">
+  <i class="bi bi-send-fill" style="font-size: 18px;"></i>
+</button>
     </div>
 
   </div>
-</div></div>
+</div>
+
+<style>
+.online-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: #00ff6a;
+  border-radius: 50%;
+  margin-left: 4px;
+  animation: pulse 1.2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+}
+</style></div>
                 </div>
             </div>
         </div>
