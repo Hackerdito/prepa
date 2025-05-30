@@ -73,8 +73,9 @@
          style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
   </video>
 
-  <!-- Botón para activar sonido -->
-  <button onclick="activarSonido()" 
+  <!-- Botón para activar/desactivar sonido -->
+  <button id="btnSonido"
+          onclick="toggleSonido()" 
           style="
             position: absolute;
             bottom: 16px;
@@ -88,14 +89,23 @@
             font-size: 14px;
             z-index: 10;
           ">
-    🔊 Activar sonido
+    🔇 Activar sonido
   </button>
 
   <script>
-    function activarSonido() {
+    function toggleSonido() {
       const video = document.getElementById("miVideo");
-      video.muted = false;
-      video.play();
+      const boton = document.getElementById("btnSonido");
+      
+      if (video.muted) {
+        video.muted = false;
+        boton.innerHTML = "🔊 Desactivar sonido";
+      } else {
+        video.muted = true;
+        boton.innerHTML = "🔇 Activar sonido";
+      }
+
+      video.play(); // Asegura que se reproduzca
     }
   </script>
 </div></div>
@@ -198,8 +208,7 @@ document.getElementById("input").addEventListener("keydown", function(event) {
     enviarMensaje();
   }
 });
-</script>
-</div>
+</script></div>
                 </div>
             </div>
         </div>
@@ -343,110 +352,105 @@ document.getElementById("input").addEventListener("keydown", function(event) {
     <section id="video" style="margin-top: 39px;">
         <div class="container">
             <div class="row">
-                <div class="col-md-4"><div style="position: relative; width: 100%; padding-top: 56.25%; overflow: hidden; border-radius: 12px;">
-  <video 
-    src="https://prepauk.netlify.app/1.mp4" 
-    controls 
-    playsinline 
-    style="
-      position: absolute;
-      top: 0; 
-      left: 0;
-      width: 100%; 
-      height: 100%;
-      object-fit: cover;
-      border-radius: 12px;
-    ">
-  </video>
-</div></div>
-                <div class="col-md-4"><!-- Portada del video -->
-<div id="video-thumbnail" style="cursor: pointer; position: relative; width: 100%; max-width: 640px; margin: auto;">
-  <img src="assets/img/v1.webp" alt="Ver video" style="width: 100%; border-radius: 12px;">
-  <span style="
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0,0,0,0.6);
-    color: white;
-    border-radius: 50%;
-    width: 64px;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 32px;
-  ">▶</span>
+                <div class="col-md-4"><!-- VIDEO 1 -->
+<div id="video-thumbnail-1" style="cursor: pointer; position: relative; width: 100%; max-width: 640px; margin: auto;">
+  <img src="assets/img/v1.webp" alt="Ver video 1" style="width: 100%; border-radius: 12px;">
+  <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.6); color: white; border-radius: 50%; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; font-size: 32px;">▶</span>
 </div>
 
-<!-- Overlay -->
-<div id="video-overlay" style="
-  display: none;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background-color: rgba(0,0,0,0.85);
-  z-index: 9999;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-">
+<div id="video-overlay-1" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.85); z-index: 9999; justify-content: center; align-items: center; padding: 20px;">
   <div style="position: relative; width: 100%; max-width: 720px; border-radius: 16px; overflow: hidden;">
-    <video id="popup-video" src="https://prepauk.netlify.app/1.mp4" controls autoplay style="width: 100%; display: block; border-radius: 16px;"></video>
-    <button onclick="cerrarVideo()" style="
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      background: rgba(255,255,255,0.9);
-      color: black;
-      font-size: 20px;
-      border-radius: 50%;
-      width: 32px;
-      height: 32px;
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-    ">×</button>
+    <video id="popup-video-1" src="https://prepauk.netlify.app/1.mp4" controls style="width: 100%; border-radius: 16px;"></video>
+    <button onclick="cerrarVideo1()" style="position: absolute; top: 8px; right: 8px; background: rgba(255,255,255,0.9); color: black; font-size: 20px; border-radius: 50%; width: 32px; height: 32px; border: none; cursor: pointer; font-weight: bold;">×</button>
   </div>
 </div>
 
-<!-- Script -->
 <script>
-  const overlay = document.getElementById("video-overlay");
-  const thumbnail = document.getElementById("video-thumbnail");
-  const video = document.getElementById("popup-video");
+  const overlay1 = document.getElementById("video-overlay-1");
+  const thumbnail1 = document.getElementById("video-thumbnail-1");
+  const video1 = document.getElementById("popup-video-1");
 
-  thumbnail.addEventListener("click", () => {
-    overlay.style.display = "flex";
-    video.currentTime = 0;
-    video.play();
+  thumbnail1.addEventListener("click", () => {
+    overlay1.style.display = "flex";
+    video1.currentTime = 0;
+    video1.play();
   });
 
-  function cerrarVideo() {
-    overlay.style.display = "none";
-    video.pause();
+  function cerrarVideo1() {
+    overlay1.style.display = "none";
+    video1.pause();
   }
 
-  overlay.addEventListener("click", (e) => {
-    if (e.target === overlay) cerrarVideo();
+  overlay1.addEventListener("click", (e) => {
+    if (e.target === overlay1) cerrarVideo1();
   });
 </script></div>
-                <div class="col-md-4"><div style="position: relative; width: 100%; padding-top: 56.25%; overflow: hidden; border-radius: 12px;">
-  <video 
-    src="https://prepauk.netlify.app/1.mp4" 
-    controls 
-    playsinline 
-    style="
-      position: absolute;
-      top: 0; 
-      left: 0;
-      width: 100%; 
-      height: 100%;
-      object-fit: cover;
-      border-radius: 12px;
-    ">
-  </video>
-</div></div>
+                <div class="col-md-4"><!-- VIDEO 2 -->
+<div id="video-thumbnail-2" style="cursor: pointer; position: relative; width: 100%; max-width: 640px; margin: auto;">
+  <img src="assets/img/2.webp" alt="Ver video 2" style="width: 100%; border-radius: 12px;">
+  <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.6); color: white; border-radius: 50%; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; font-size: 32px;">▶</span>
+</div>
+
+<div id="video-overlay-2" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.85); z-index: 9999; justify-content: center; align-items: center; padding: 20px;">
+  <div style="position: relative; width: 100%; max-width: 720px; border-radius: 16px; overflow: hidden;">
+    <video id="popup-video-2" src="https://prepauk.netlify.app/2.mp4" controls style="width: 100%; border-radius: 16px;"></video>
+    <button onclick="cerrarVideo2()" style="position: absolute; top: 8px; right: 8px; background: rgba(255,255,255,0.9); color: black; font-size: 20px; border-radius: 50%; width: 32px; height: 32px; border: none; cursor: pointer; font-weight: bold;">×</button>
+  </div>
+</div>
+
+<script>
+  const overlay2 = document.getElementById("video-overlay-2");
+  const thumbnail2 = document.getElementById("video-thumbnail-2");
+  const video2 = document.getElementById("popup-video-2");
+
+  thumbnail2.addEventListener("click", () => {
+    overlay2.style.display = "flex";
+    video2.currentTime = 0;
+    video2.play();
+  });
+
+  function cerrarVideo2() {
+    overlay2.style.display = "none";
+    video2.pause();
+  }
+
+  overlay2.addEventListener("click", (e) => {
+    if (e.target === overlay2) cerrarVideo2();
+  });
+</script></div>
+                <div class="col-md-4"><!-- VIDEO 3 -->
+<div id="video-thumbnail-3" style="cursor: pointer; position: relative; width: 100%; max-width: 640px; margin: auto;">
+  <img src="assets/img/3.webp" alt="Ver video 3" style="width: 100%; border-radius: 12px;">
+  <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.6); color: white; border-radius: 50%; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; font-size: 32px;">▶</span>
+</div>
+
+<div id="video-overlay-3" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.85); z-index: 9999; justify-content: center; align-items: center; padding: 20px;">
+  <div style="position: relative; width: 100%; max-width: 720px; border-radius: 16px; overflow: hidden;">
+    <video id="popup-video-3" src="https://prepauk.netlify.app/3.mp4" controls style="width: 100%; border-radius: 16px;"></video>
+    <button onclick="cerrarVideo3()" style="position: absolute; top: 8px; right: 8px; background: rgba(255,255,255,0.9); color: black; font-size: 20px; border-radius: 50%; width: 32px; height: 32px; border: none; cursor: pointer; font-weight: bold;">×</button>
+  </div>
+</div>
+
+<script>
+  const overlay3 = document.getElementById("video-overlay-3");
+  const thumbnail3 = document.getElementById("video-thumbnail-3");
+  const video3 = document.getElementById("popup-video-3");
+
+  thumbnail3.addEventListener("click", () => {
+    overlay3.style.display = "flex";
+    video3.currentTime = 0;
+    video3.play();
+  });
+
+  function cerrarVideo3() {
+    overlay3.style.display = "none";
+    video3.pause();
+  }
+
+  overlay3.addEventListener("click", (e) => {
+    if (e.target === overlay3) cerrarVideo3();
+  });
+</script></div>
             </div>
         </div>
     </section>
@@ -470,7 +474,7 @@ document.getElementById("input").addEventListener("keydown", function(event) {
                                 </div>
                             </div>
                             <div class="3accordion-item">
-                                <h2 class="accordion-header"><button class="btn accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#content-accordion-3"><strong>¿Con este certificado puedo estudiar una licenciatura?</strong></button></h2>
+                                <h2 class="accordion-header"><button class="btn accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#content-accordion-3"><strong>¿Con qué documentos me puedo inscribir?</strong></button></h2>
                                 <div id="content-accordion-3" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                                     <p class="accordion-body">Debes enviar los siguientes documentos escaneados con scanner profesional (no escaneos con apps de celular, ni fotos). Deben ser escaneados desde el documento original, a color y por ambos lados. No podemos inscribirte de manera oficial si alguno de estos documentos hace falta:<br>Certificado de secundaria<br>Acta de nacimiento<br>CURP<br>Comprobante de domicilio<br>Fotografía tamaño infantil<br>INE</p>
                                 </div>
@@ -485,6 +489,42 @@ document.getElementById("input").addEventListener("keydown", function(event) {
                                 <h2 class="accordion-header"><button class="btn accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#content-accordion-5"><strong>¿Me puede entregar el certificado antes de los dos años?</strong></button></h2>
                                 <div id="content-accordion-5" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                                     <p class="accordion-body">No. Una vez que termines tus 6 cuatrimestres que corresponden al plan de estudios y no debas ninguna materia se podrá hacer el proceso para entregarte el certificado oficial de estudios.</p>
+                                </div>
+                            </div>
+                            <div class="3accordion-item">
+                                <h2 class="accordion-header"><button class="btn accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#content-accordion-6"><strong>¿Debo cubrir algún pago?</strong></button></h2>
+                                <div id="content-accordion-6" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                                    <p class="accordion-body">¿Qué costo tiene?<br>Pagas solo $490 por mes. Puedes tener un 15% de descuento pagando el año por adelantado.<br>Inscripción anual $230<br>Reinscripción segundo año $230<br>Certificado $230&nbsp;</p>
+                                </div>
+                            </div>
+                            <div class="3accordion-item">
+                                <h2 class="accordion-header"><button class="btn accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#content-accordion-8"><strong>¿Los extraordinarios tienen costo?</strong></button></h2>
+                                <div id="content-accordion-8" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                                    <p class="accordion-body">Sí, es de $109 MXN.</p>
+                                </div>
+                            </div>
+                            <div class="3accordion-item">
+                                <h2 class="accordion-header"><button class="btn accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#content-accordion-7"><strong>¿Tienen alumnos graduados?</strong></button></h2>
+                                <div id="content-accordion-7" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                                    <p class="accordion-body">Sí, tenemos más de 200 alumnos graduados alrededor de la República Mexicana que ya cuentan con su certificado oficial.</p>
+                                </div>
+                            </div>
+                            <div class="3accordion-item">
+                                <h2 class="accordion-header"><button class="btn accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#content-accordion-9"><strong>¿Cuál es su clave de centro de trabajo (CCT)?</strong></button></h2>
+                                <div id="content-accordion-9" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                                    <p class="accordion-body">Nuestra CCT es 01PBH0173I, y nuestro RVOE 2526 otorgado por el IEA.</p>
+                                </div>
+                            </div>
+                            <div class="3accordion-item">
+                                <h2 class="accordion-header"><button class="btn accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#content-accordion-10"><strong>¿Tendré acompañamiento a lo largo de estudio?</strong></button></h2>
+                                <div id="content-accordion-10" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                                    <p class="accordion-body">Sí, contarás con accesos a un Tutor Virtual 24/7 y sesiones en vivo con profesores tres veces por semana.</p>
+                                </div>
+                            </div>
+                            <div class="3accordion-item">
+                                <h2 class="accordion-header"><button class="btn accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#content-accordion-11"><strong>¿Tendré acompañamiento a lo largo de estudio?</strong></button></h2>
+                                <div id="content-accordion-11" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                                    <p class="accordion-body">Los días lunes, miércoles y viernes de 7 a 8 pm.</p>
                                 </div>
                             </div>
                         </div>
