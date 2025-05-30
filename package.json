@@ -1,15 +1,11 @@
 {
-  "name": "netlify-functions",
+  "name": "chatgpt",
   "version": "1.0.0",
-  "dependencies": {
-    "node-fetch": "^2.6.7"
-  }
-}
-
-{
-  "name": "chatgpt-function",
-  "version": "1.0.0",
+  "description": "ChatGPT simulation backend",
   "main": "chatgpt.js",
+  "scripts": {
+    "start": "node chatgpt.js"
+  },
   "dependencies": {
     "node-fetch": "^2.6.7"
   }
