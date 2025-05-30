@@ -1,5 +1,3 @@
-// netlify/functions/chatgpt.js
-
 const fetch = require("node-fetch");
 
 exports.handler = async function (event) {
@@ -28,9 +26,10 @@ exports.handler = async function (event) {
     } else {
       return {
         statusCode: 500,
-        body: JSON.stringify({ reply: "Hubo un error al procesar tu mensaje." })
+        body: JSON.stringify({ reply: "La IA no devolvió una respuesta." })
       };
     }
+
   } catch (error) {
     return {
       statusCode: 500,
