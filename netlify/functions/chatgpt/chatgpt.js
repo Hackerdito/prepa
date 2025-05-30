@@ -1,6 +1,6 @@
 const fetch = require("node-fetch");
 
-exports.handler = async function (event) {
+exports.handler = async function(event) {
   try {
     const { message } = JSON.parse(event.body);
 
@@ -29,11 +29,10 @@ exports.handler = async function (event) {
         body: JSON.stringify({ reply: "La IA no devolvió una respuesta." })
       };
     }
-
   } catch (error) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ reply: "Error en el servidor: " + error.message })
+      body: JSON.stringify({ reply: "Error del servidor: " + error.message })
     };
   }
 };
