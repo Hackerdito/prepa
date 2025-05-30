@@ -169,6 +169,37 @@
     
 </div>
 
+<script>
+async function enviarMensaje() {
+  const input = document.getElementById('input');
+  const chat = document.getElementById('chat');
+  const mensaje = input.value.trim();
+  if (!mensaje) return;
+
+  // Mostrar mensaje del usuario
+  const userMsg = document.createElement('div');
+  userMsg.innerText = mensaje;
+  userMsg.style = "align-self: flex-end; background: transparent; border: 1px solid white; padding: 8px 14px; border-radius: 20px; max-width: 80%; color: white;";
+  chat.appendChild(userMsg);
+
+  input.value = "";
+
+  // Llama a Netlify Function
+  const res = await fetch('/.netlify/functions/chatgpt', {
+    method: "POST",
+    body: JSON.stringify({ message: mensaje })
+  });
+
+  const data = await res.json();
+
+  const botMsg = document.createElement('div');
+  botMsg.innerText = data.reply;
+  botMsg.style = "align-self: flex-start; background: #26aefb; padding: 8px 14px; border-radius: 20px; max-width: 80%; color: white;";
+  chat.appendChild(botMsg);
+  chat.scrollTop = chat.scrollHeight;
+}
+</script>
+
 
 
 <style>
@@ -352,22 +383,78 @@
     ">
   </video>
 </div></div>
-                <div class="col-md-4"><div style="position: relative; width: 100%; padding-top: 56.25%; overflow: hidden; border-radius: 12px;">
-  <video 
-    src="https://prepauk.netlify.app/1.mp4" 
-    controls 
-    playsinline 
-    style="
+                <div class="col-md-4"><!-- Portada del video -->
+<div id="video-thumbnail" style="cursor: pointer; position: relative; width: 100%; max-width: 640px; margin: auto;">
+  <img src="assets/img/v1.webp" alt="Ver video" style="width: 100%; border-radius: 12px;">
+  <span style="
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.6);
+    color: white;
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+  ">▶</span>
+</div>
+
+<!-- Overlay -->
+<div id="video-overlay" style="
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background-color: rgba(0,0,0,0.85);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+">
+  <div style="position: relative; width: 100%; max-width: 720px; border-radius: 16px; overflow: hidden;">
+    <video id="popup-video" src="https://prepauk.netlify.app/1.mp4" controls autoplay style="width: 100%; display: block; border-radius: 16px;"></video>
+    <button onclick="cerrarVideo()" style="
       position: absolute;
-      top: 0; 
-      left: 0;
-      width: 100%; 
-      height: 100%;
-      object-fit: cover;
-      border-radius: 12px;
-    ">
-  </video>
-</div></div>
+      top: 8px;
+      right: 8px;
+      background: rgba(255,255,255,0.9);
+      color: black;
+      font-size: 20px;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    ">×</button>
+  </div>
+</div>
+
+<!-- Script -->
+<script>
+  const overlay = document.getElementById("video-overlay");
+  const thumbnail = document.getElementById("video-thumbnail");
+  const video = document.getElementById("popup-video");
+
+  thumbnail.addEventListener("click", () => {
+    overlay.style.display = "flex";
+    video.currentTime = 0;
+    video.play();
+  });
+
+  function cerrarVideo() {
+    overlay.style.display = "none";
+    video.pause();
+  }
+
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) cerrarVideo();
+  });
+</script></div>
                 <div class="col-md-4"><div style="position: relative; width: 100%; padding-top: 56.25%; overflow: hidden; border-radius: 12px;">
   <video 
     src="https://prepauk.netlify.app/1.mp4" 
