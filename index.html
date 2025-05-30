@@ -100,108 +100,7 @@
   </script>
 </div></div>
                 <div class="col-md-6 col-lg-8 col-xl-4 col-xxl-4 offset-lg-2 offset-xl-0 offset-xxl-0 d-xxl-flex" style="margin-top: 20px;">
-                    <div class="d-xxl-flex"><div style="margin: 0;display: flex; justify-content: center; align-items: center; font-family: 'Helvetica Neue', sans-serif;">
-  <div style="width: 420px;border-radius: 20px;padding: 16px;background: rgba(255, 255, 255, 0.05);backdrop-filter: blur(12px);-webkit-backdrop-filter: blur(12px);border: 1px solid rgba(255, 255, 255, 0.1);color: white;">
-    
-    <!-- Header -->
-    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-      <img src="assets/img/w.webp" alt="Asesor Virtual" style="width: 40px; height: 40px; border-radius: 50%;">
-      <div>
-        <h3 style="margin: 0; font-size: 16px;">Asesora Virtual</h3>
-        <span style="font-size: 12px; color: #8fff96;">
-  En línea <span class="online-dot"></span>
-</span>
-      </div>
-    </div>
-
-    <!-- Chat body -->
-    <div style="background-color: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 12px; margin: 12px 0; height: 150px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;">
-      <div style="max-width: 80%; padding: 8px 14px; border-radius: 20px; font-size: 14px; display: inline-block; background-color: #26aefb; align-self: flex-start; color: white;">Hola, Estoy aquí para ayudarte a  terminar tu prepa</div>
-    </div>
-
-    <!-- Input -->
-    <div style="display: flex; justify-content: space-between; align-items: center; background-color: transparent; border: 1px solid white; border-radius: 20px; padding: 6px 12px;">
-      <input type="text" placeholder="Escribe Aquí" style="flex: 1; background: transparent; border: none; color: white; font-size: 14px; outline: none;">
-      <button style="
-  background-color: #26aefb;
-  border: none;
-  color: white;
-  padding: 10px 12px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;">
-  <i class="bi bi-send-fill" style="font-size: 18px;"></i>
-</button>
-    </div>
-<div style="text-align: center; margin-top: 24px;">
-  <a href="#" style="
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #F27828;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 12px 24px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-family: sans-serif;
-    gap: 12px;
-  ">
-    Comenzar ahora
-    <span style="
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 28px;
-      height: 28px;
-      border: 1px solid white;
-      border-radius: 50%;
-    ">
-      <i class="bi bi-arrow-right" style="font-size: 14px;"></i>
-    </span>
-  </a>
-</div>
-  </div>
-    
-</div>
-
-<script>
-async function enviarMensaje() {
-  const input = document.getElementById('input');
-  const chat = document.getElementById('chat');
-  const mensaje = input.value.trim();
-  if (!mensaje) return;
-
-  // Mostrar mensaje del usuario
-  const userMsg = document.createElement('div');
-  userMsg.innerText = mensaje;
-  userMsg.style = "align-self: flex-end; background: transparent; border: 1px solid white; padding: 8px 14px; border-radius: 20px; max-width: 80%; color: white;";
-  chat.appendChild(userMsg);
-
-  input.value = "";
-
-  // Llama a Netlify Function
-  const res = await fetch('/.netlify/functions/chatgpt', {
-    method: "POST",
-    body: JSON.stringify({ message: mensaje })
-  });
-
-  const data = await res.json();
-
-  const botMsg = document.createElement('div');
-  botMsg.innerText = data.reply;
-  botMsg.style = "align-self: flex-start; background: #26aefb; padding: 8px 14px; border-radius: 20px; max-width: 80%; color: white;";
-  chat.appendChild(botMsg);
-  chat.scrollTop = chat.scrollHeight;
-}
-</script>
-
-
-
+                    <div class="d-xxl-flex"><!-- Estilo del punto verde -->
 <style>
 .online-dot {
   display: inline-block;
@@ -212,7 +111,6 @@ async function enviarMensaje() {
   margin-left: 4px;
   animation: pulse 1.2s infinite ease-in-out;
 }
-
 @keyframes pulse {
   0%, 100% {
     transform: scale(1);
@@ -223,7 +121,85 @@ async function enviarMensaje() {
     opacity: 0.5;
   }
 }
-</style></div>
+</style>
+
+<!-- Caja del chat -->
+<div style="width: 100%; display: flex; justify-content: center;">
+  <div style="width: 420px;border-radius: 20px;padding: 16px;background: rgba(255, 255, 255, 0.05);backdrop-filter: blur(12px);-webkit-backdrop-filter: blur(12px);border: 1px solid rgba(255, 255, 255, 0.1);color: white;">
+
+    <!-- Header -->
+    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+      <img src="assets/img/w.webp" alt="Asesor Virtual" style="width: 40px; height: 40px; border-radius: 50%;">
+      <div>
+        <h3 style="margin: 0; font-size: 16px;">Asesora Virtual</h3>
+        <span style="font-size: 12px; color: #8fff96;">En línea <span class="online-dot"></span></span>
+      </div>
+    </div>
+
+    <!-- Chat -->
+    <div id="chat" style="background-color: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 12px; margin: 12px 0; height: 150px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;">
+      <div style="max-width: 80%; padding: 8px 14px; border-radius: 20px; font-size: 14px; display: inline-block; background-color: #26aefb; align-self: flex-start; color: white;">
+        Hola, Estoy aquí para ayudarte a terminar tu prepa
+      </div>
+    </div>
+
+    <!-- Input -->
+    <div style="display: flex; justify-content: space-between; align-items: center; background-color: transparent; border: 1px solid white; border-radius: 20px; padding: 6px 12px;">
+      <input id="input" type="text" placeholder="Escribe Aquí" style="flex: 1; background: transparent; border: none; color: white; font-size: 14px; outline: none;">
+      <button onclick="enviarMensaje()" style="background-color: #26aefb; border: none; color: white; padding: 10px 12px; border-radius: 50%; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center;">
+        <i class="bi bi-send-fill" style="font-size: 18px;"></i>
+      </button>
+    </div>
+
+    <!-- Botón CTA -->
+    <div style="text-align: center; margin-top: 24px;">
+      <a href="#" style="display: inline-flex; align-items: center; justify-content: center; background-color: #F27828; color: white; font-size: 16px; font-weight: bold; padding: 12px 24px; border-radius: 50px; text-decoration: none; gap: 12px;">
+        Comenzar ahora
+        <span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border: 1px solid white; border-radius: 50%;">
+          <i class="bi bi-arrow-right" style="font-size: 14px;"></i>
+        </span>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<!-- Script funcional -->
+<script>
+async function enviarMensaje() {
+  const input = document.getElementById('input');
+  const chat = document.getElementById('chat');
+  const mensaje = input.value.trim();
+  if (!mensaje) return;
+
+  const userMsg = document.createElement('div');
+  userMsg.innerText = mensaje;
+  userMsg.style = "align-self: flex-end; background: transparent; border: 1px solid white; padding: 8px 14px; border-radius: 20px; max-width: 80%; color: white;";
+  chat.appendChild(userMsg);
+  input.value = "";
+
+  const res = await fetch('/.netlify/functions/chatgpt', {
+    method: "POST",
+    body: JSON.stringify({ message: mensaje })
+  });
+  const data = await res.json();
+
+  const botMsg = document.createElement('div');
+  botMsg.innerText = data.reply;
+  botMsg.style = "align-self: flex-start; background: #26aefb; padding: 8px 14px; border-radius: 20px; max-width: 80%; color: white;";
+  chat.appendChild(botMsg);
+  chat.scrollTop = chat.scrollHeight;
+    
+}
+    // También enviar al presionar Enter
+document.getElementById("input").addEventListener("keydown", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault(); // Previene que haga saltos de línea si fuese textarea
+    enviarMensaje();
+  }
+});
+</script>
+</div>
                 </div>
             </div>
         </div>
