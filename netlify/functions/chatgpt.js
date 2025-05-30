@@ -1,5 +1,5 @@
 // netlify/functions/chatgpt.js
-
+s
 const fetch = require("node-fetch");
 
 exports.handler = async function (event) {
