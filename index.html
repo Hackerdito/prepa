@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>prepa-2025</title>
+    <title>Prepa_Uk_25</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:100,200,300,400,500,600,700,800,900&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,700,700i&amp;display=swap">
@@ -147,30 +147,19 @@
     </div>
 
     <!-- Chat -->
-    <div id="chat" style="background-color: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 12px; margin: 12px 0; height: 150px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;">
+    <div id="chat" style="background-color: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 12px; margin: 12px 0; height: 250px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;">
       <div style="max-width: 80%; padding: 8px 14px; border-radius: 20px; font-size: 14px; display: inline-block; background-color: #26aefb; align-self: flex-start; color: white;">
         Hola, Estoy aquí para ayudarte a terminar tu prepa
       </div>
     </div>
 
     <!-- Input -->
-    <div style="display: flex; justify-content: space-between; align-items: center; background-color: transparent; border: 1px solid white; border-radius: 20px; padding: 6px 12px;">
+    <div style="margin-top: 8px; display: flex; justify-content: space-between; align-items: center; background-color: transparent; border: 1px solid white; border-radius: 20px; padding: 6px 12px;">
       <input id="input" type="text" placeholder="Escribe Aquí" style="flex: 1; background: transparent; border: none; color: white; font-size: 14px; outline: none;">
       <button onclick="enviarMensaje()" style="background-color: #26aefb; border: none; color: white; padding: 10px 12px; border-radius: 50%; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center;">
         <i class="bi bi-send-fill" style="font-size: 18px;"></i>
       </button>
     </div>
-
-    <!-- Botón CTA -->
-    <div style="text-align: center; margin-top: 24px;">
-      <a href="#" style="display: inline-flex; align-items: center; justify-content: center; background-color: #F27828; color: white; font-size: 16px; font-weight: bold; padding: 12px 24px; border-radius: 50px; text-decoration: none; gap: 12px;">
-        Comenzar ahora
-        <span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border: 1px solid white; border-radius: 50%;">
-          <i class="bi bi-arrow-right" style="font-size: 14px;"></i>
-        </span>
-      </a>
-    </div>
-
   </div>
 </div>
 
@@ -199,16 +188,27 @@ async function enviarMensaje() {
   botMsg.style = "align-self: flex-start; background: #26aefb; padding: 8px 14px; border-radius: 20px; max-width: 80%; color: white;";
   chat.appendChild(botMsg);
   chat.scrollTop = chat.scrollHeight;
-    
 }
-    // También enviar al presionar Enter
+
+// También enviar al presionar Enter
 document.getElementById("input").addEventListener("keydown", function(event) {
   if (event.key === "Enter") {
-    event.preventDefault(); // Previene que haga saltos de línea si fuese textarea
+    event.preventDefault();
     enviarMensaje();
   }
 });
 </script></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section style="background: #f9b233;padding: 10px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div><button class="btn btn-primary btn-lg" type="button" style="background: #323232;border-color: #323232;">Comienza Ahora&nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-chevron-right">
+                                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"></path>
+                            </svg></button></div>
                 </div>
             </div>
         </div>
